@@ -20,6 +20,7 @@ export STARTUPWMCLASS=secrets # For Wayland, this is 'org.gnome.World.Secrets', 
 
 # Deploy dependencies
 quick-sharun /usr/bin/secrets \
+             /usr/share/secrets \
              /usr/lib/libgirepository*
 
 # Turn AppDir into AppImage

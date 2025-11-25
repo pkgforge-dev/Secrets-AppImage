@@ -25,7 +25,7 @@ quick-sharun /usr/bin/secrets \
 # Patch secrets to use AppImage's directory
 sed -i '/from gsecrets import const/a \
 SHARUN_DIR = os.getenv('"'"'SHARUN_DIR'"'"')\n\
-PKGDATADIR = os.path.join(SHARUN_DIR, '"'"'share'"'"')\n\
+PKGDATADIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'secrets'"'"')\n\
 LOCALEDIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'locale'"'"')' ./AppDir/bin/secrets
 sed -i 's|const.PKGDATADIR|PKGDATADIR|' ./AppDir/bin/secrets
 sed -i 's|const.LOCALEDIR|LOCALEDIR|' ./AppDir/bin/secrets

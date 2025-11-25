@@ -14,10 +14,6 @@ export DEPLOY_SYS_PYTHON=1
 export DEPLOY_OPENGL=1
 export DEPLOY_GTK=1
 export GTK_DIR=gtk-4.0
-export PATH_MAPPING='
-       /usr/share/secrets:${SHARUN_DIR}/share/secrets
-       /usr/share/locale:${SHARUN_DIR}/share/locale
-'
 export ANYLINUX_LIB=1
 export DEPLOY_LOCALE=1
 export STARTUPWMCLASS=secrets # For Wayland, this is 'org.gnome.World.Secrets', so this needs to be changed in desktop file manually by the user in that case until some potential automatic fix exists for this
@@ -25,6 +21,10 @@ export STARTUPWMCLASS=secrets # For Wayland, this is 'org.gnome.World.Secrets', 
 # Deploy dependencies
 quick-sharun /usr/bin/secrets \
              /usr/lib/libgirepository*
+
+# Patch secrets to use AppImage's directory
+sed -i '/const.PKGDATADIR/c\os.getenv("SHARUN_DIR"), "share"' ./AppDir/bin/secrets
+sed -i '/const.LOCALEDIR/c\os.getenv("SHARUN_DIR"), "share", "locale"' ./AppDir/bin/secrets
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage

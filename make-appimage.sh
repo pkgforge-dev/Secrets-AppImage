@@ -16,6 +16,7 @@ export DEPLOY_GTK=1
 export GTK_DIR=gtk-4.0
 export PATH_MAPPING='
        /usr/share/secrets:${SHARUN_DIR}/share/secrets
+       /usr/share/locale:${SHARUN_DIR}/share/locale
 '
 export ANYLINUX_LIB=1
 export DEPLOY_LOCALE=1

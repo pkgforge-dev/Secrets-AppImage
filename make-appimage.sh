@@ -24,7 +24,7 @@ quick-sharun /usr/bin/secrets \
 
 # Patch secrets to use AppImage's directory
 sed -i 's|const.PKGDATADIR|os.getenv("SHARUN_DIR"), "share"|' ./AppDir/bin/secrets
-sed -i 's|const.LOCALEDIR|os.getenv("SHARUN_DIR"), "share" "locale"|' ./AppDir/bin/secrets
+sed -i 's|const.LOCALEDIR|os.getenv("SHARUN_DIR"), "share", "locale"|' ./AppDir/bin/secrets
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage

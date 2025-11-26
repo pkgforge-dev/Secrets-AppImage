@@ -6,9 +6,7 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm secrets \
-                        libcups \
-                        libusb
+pacman -Syu --noconfirm secrets
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"

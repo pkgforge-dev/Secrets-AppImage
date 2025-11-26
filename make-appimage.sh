@@ -30,5 +30,8 @@ LOCALEDIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'locale'"'"')' ./AppDi
 sed -i 's|const.PKGDATADIR|PKGDATADIR|' ./AppDir/bin/secrets
 sed -i 's|const.LOCALEDIR|LOCALEDIR|' ./AppDir/bin/secrets
 
+# Set gsettings to save to keyfile
+echo "GSETTINGS_BACKEND=keyfile" >> ./AppDir/.env
+
 # Turn AppDir into AppImage
 quick-sharun --make-appimage

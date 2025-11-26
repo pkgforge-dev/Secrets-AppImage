@@ -12,10 +12,12 @@ export ICON=/usr/share/icons/hicolor/scalable/apps/org.gnome.World.Secrets.svg
 export DESKTOP=/usr/share/applications/org.gnome.World.Secrets.desktop
 export DEPLOY_SYS_PYTHON=1
 export DEPLOY_OPENGL=1
+export DEPLOY_P11KIT=1
 export DEPLOY_GTK=1
 export GTK_DIR=gtk-4.0
-export ANYLINUX_LIB=1
+export DEPLOY_GSTREAMER=1
 export DEPLOY_LOCALE=1
+export ANYLINUX_LIB=1
 export STARTUPWMCLASS=secrets # For Wayland, this is 'org.gnome.World.Secrets', so this needs to be changed in desktop file manually by the user in that case until some potential automatic fix exists for this
 
 # Deploy dependencies
@@ -29,9 +31,6 @@ PKGDATADIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'secrets'"'"')\n\
 LOCALEDIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'locale'"'"')' ./AppDir/bin/secrets
 sed -i 's|const.PKGDATADIR|PKGDATADIR|' ./AppDir/bin/secrets
 sed -i 's|const.LOCALEDIR|LOCALEDIR|' ./AppDir/bin/secrets
-
-# Set gsettings to save to keyfile
-echo "GSETTINGS_BACKEND=keyfile" >> ./AppDir/.env
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage

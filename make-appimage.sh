@@ -22,7 +22,9 @@ export STARTUPWMCLASS=secrets # For Wayland, this is 'org.gnome.World.Secrets', 
 
 # Deploy dependencies
 quick-sharun /usr/bin/secrets \
-             /usr/lib/libgirepository*
+             /usr/lib/libgirepository* \
+             /usr/lib/libusb* \
+             /usr/lib/libcups*
 
 # Patch secrets to use AppImage's directory
 sed -i '/from gsecrets import const/a \

@@ -19,12 +19,14 @@ export DEPLOY_GSTREAMER=1
 export DEPLOY_LOCALE=1
 export ANYLINUX_LIB=1
 export STARTUPWMCLASS=secrets # For Wayland, this is 'org.gnome.World.Secrets', so this needs to be changed in desktop file manually by the user in that case until some potential automatic fix exists for this
+export PATH_MAPPING='/sbin/ldconfig:${SHARUN_DIR}/bin/ldconfig'
 
 # Deploy dependencies
 quick-sharun /usr/bin/secrets \
              /usr/lib/libgirepository* \
              /usr/lib/libusb* \
-             /usr/lib/libcups*
+             /usr/lib/libcups* \
+             /sbin/ldconfig
 
 # Patch secrets to use AppImage's directory
 sed -i '/from gsecrets import const/a \
@@ -33,6 +35,14 @@ PKGDATADIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'secrets'"'"')\n\
 LOCALEDIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'locale'"'"')' ./AppDir/bin/secrets
 sed -i 's|const.PKGDATADIR|PKGDATADIR|' ./AppDir/bin/secrets
 sed -i 's|const.LOCALEDIR|LOCALEDIR|' ./AppDir/bin/secrets
+
+sed -i -e 's|/etc/ld.so.cache|/tmp/ld.so.cache|g' ./AppDir/bin/ldconfig
+echo '#!/bin/sh
+if command -v ldconfig 1>/dev/null && [ ! -f /tmp/ld.so.cache ]; then
+	exec ldconfig
+fi
+' > ./AppDir/bin/ldconfig.hook
+chmod +x ./AppDir/bin/ldconfig.hook
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage

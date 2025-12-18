@@ -18,7 +18,8 @@ export GTK_DIR=gtk-4.0
 export DEPLOY_GSTREAMER=1
 export DEPLOY_LOCALE=1
 export ANYLINUX_LIB=1
-export STARTUPWMCLASS=secrets # For Wayland, this is 'org.gnome.World.Secrets', so this needs to be changed in desktop file manually by the user in that case until some potential automatic fix exists for this
+export STARTUPWMCLASS=secrets
+export GTK_CLASS_FIX=1
 export PATH_MAPPING='/sbin/ldconfig:${SHARUN_DIR}/bin/ldconfig'
 
 # Deploy dependencies

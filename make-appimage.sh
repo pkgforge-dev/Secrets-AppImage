@@ -18,6 +18,7 @@ export GTK_DIR=gtk-4.0
 export DEPLOY_GSTREAMER=1
 export DEPLOY_LOCALE=1
 export ANYLINUX_LIB=1
+export STARTUPWMCLASS=org.gnome.World.Secrets # Default to Wayland's wmclass. For X11, GTK_CLASS_FIX will force the wmclass to be the Wayland one.
 export GTK_CLASS_FIX=1
 export PATH_MAPPING='/sbin/ldconfig:${SHARUN_DIR}/bin/ldconfig'
 

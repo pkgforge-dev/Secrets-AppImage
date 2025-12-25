@@ -35,8 +35,8 @@ python_dir=$(echo ./AppDir/shared/lib/python*)
 	cd "$python_dir"
 	for f in $(find ./ -type f -name '*.pyc' -print); do
 		case "$f" in
-			gsecrets) :;;
-            secrets) :;;
+			*/"secrets"*) :;;
+			*/"gsecrets"*) :;;
 			*) [ ! -f "$f" ] || rm -f "$f";;
 		esac
 	done

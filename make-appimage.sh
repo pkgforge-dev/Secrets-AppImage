@@ -11,6 +11,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=/usr/share/icons/hicolor/scalable/apps/org.gnome.World.Secrets.svg
 export DESKTOP=/usr/share/applications/org.gnome.World.Secrets.desktop
 export DEPLOY_SYS_PYTHON=1
+export DEBLOAT_SYS_PYTHON=0 # we will manually debloat, as the pyc directory name is not the same as mainbin (gsecrets vs secrets)
 export DEPLOY_P11KIT=1
 export DEPLOY_GTK=1
 export GTK_DIR=gtk-4.0
@@ -27,6 +28,19 @@ quick-sharun /usr/bin/secrets \
              /usr/lib/libusb* \
              /usr/lib/libcups* \
              /sbin/ldconfig
+
+# Manually debloat .pyc files
+python_dir=$(echo ./AppDir/shared/lib/python*)
+(
+	cd "$python_dir"
+	for f in $(find ./ -type f -name '*.pyc' -print); do
+		case "$f" in
+			gsecrets) :;;
+      secrets) :;;
+			*) [ ! -f "$f" ] || rm -f "$f";;
+		esac
+	done
+)
 
 # Patch secrets to use AppImage's directory
 sed -i '/from gsecrets import const/a \

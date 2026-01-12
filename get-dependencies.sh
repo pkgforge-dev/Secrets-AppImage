@@ -6,6 +6,7 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
+pacman -Syu --noconfirm -S python
 pacman -Syu --noconfirm secrets
 
 echo "Installing debloated packages..."

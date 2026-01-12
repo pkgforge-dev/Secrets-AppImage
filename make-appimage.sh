@@ -20,17 +20,15 @@ export DEPLOY_LOCALE=1
 export ANYLINUX_LIB=1
 export STARTUPWMCLASS=org.gnome.World.Secrets # Default to Wayland's wmclass. For X11, GTK_CLASS_FIX will force the wmclass to be the Wayland one.
 export GTK_CLASS_FIX=1
-export PATH_MAPPING='/sbin/ldconfig:${SHARUN_DIR}/bin/ldconfig'
 
 # Deploy dependencies
 quick-sharun /usr/bin/secrets \
              /usr/lib/libgirepository* \
              /usr/lib/libusb* \
-             /usr/lib/libcups* \
-             /sbin/ldconfig
+             /usr/lib/libcups*
 
 # Manually debloat .pyc files
-python_dir=$(echo ./AppDir/shared/lib/python*)
+python_dir="$PWD/AppDir/shared/lib/python3.14"
 (
 	cd "$python_dir"
 	for f in $(find ./ -type f -name '*.pyc' -print); do
@@ -49,7 +47,6 @@ PKGDATADIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'secrets'"'"')\n\
 LOCALEDIR = os.path.join(SHARUN_DIR, '"'"'share'"'"', '"'"'locale'"'"')' ./AppDir/bin/secrets
 sed -i 's|const.PKGDATADIR|PKGDATADIR|' ./AppDir/bin/secrets
 sed -i 's|const.LOCALEDIR|LOCALEDIR|' ./AppDir/bin/secrets
-
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage

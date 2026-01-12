@@ -28,7 +28,7 @@ quick-sharun /usr/bin/secrets \
              /usr/lib/libcups*
 
 # Manually debloat .pyc files
-python_dir="$PWD/AppDir/shared/lib/python3.14"
+python_dir=$(echo ./AppDir/shared/lib/python*)
 (
 	cd "$python_dir"
 	for f in $(find ./ -type f -name '*.pyc' -print); do

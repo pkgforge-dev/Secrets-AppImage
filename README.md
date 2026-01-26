@@ -1,3 +1,5 @@
+<div align="center">
+
 # Secrets AppImage 🐧
 
 [![GitHub Downloads](https://img.shields.io/github/downloads/pkgforge-dev/Secrets-AppImage/total?logo=github&label=GitHub%20Downloads)](https://github.com/pkgforge-dev/Secrets-AppImage/releases/latest)
@@ -8,7 +10,11 @@
   <img src="https://gitlab.gnome.org/World/secrets/-/raw/master/data/icons/hicolor/scalable/apps/org.gnome.World.Secrets.svg?ref_type=heads"" width="128" />
 </p>
 
-* [Upstream URL](https://gitlab.gnome.org/World/secrets)
+| Latest Stable Release | Upstream URL |
+| :---: | :---: |
+| [Click here](https://github.com/pkgforge-dev/Secrets-AppImage/releases/latest) | [Click here](https://gitlab.gnome.org/World/secrets) |
+
+</div>
 
 ---
 
